@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicom Viewer</title>
+    <link rel="stylesheet" href="info.css">
+
+    <!-- Import Cornerstone.js -->
+    <script src="https://unpkg.com/cornerstone-core"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader"></script>
+    <script src="https://unpkg.com/cornerstone-web-image-loader"></script>
+    <script src="https://unpkg.com/dicom-parser"></script>
+</head>
+<body>
+    <header>
+        <h3>Welcom to DCM</h3>
+    </header>
+
+    <nav class="navbar">
+        <div class="left-buttons">
+            <button onclick="window.location.href='web.html'">Trang chủ</button>
+            <input type="file" id="dicomInput" accept=".dcm" style="display: none;" onchange="loadDicom(event)">
+            <button onclick="document.getElementById('dicomInput').click()">Tải ảnh DICOM</button>
+        </div>
+        <div class="right-buttons">
+            <button onclick="adjustBrightness(10)">- Sáng</button>
+            <button onclick="adjustBrightness(-10)">+ Sáng</button>
+            <button onclick="zoomImage(0.1)">Zoom In</button>
+            <button onclick="zoomImage(-0.1)">Zoom Out</button>
+            <button onclick="rotateImage()">Xoay 90°</button>
+            <button id="drawButton" onclick="toggleDrawMode()">Bút</button>
+            <button id="eraseButton" onclick="toggleEraseMode()">Tẩy</button>
+            <button onclick="saveSegmentation()">Lưu</button>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="dicom-container">
+            <div id="dicomViewer"></div>
+            <canvas id="overlayCanvas"></canvas>
+        </div>
+        <div class="dicom-info">
+            <h2>Thông tin Bệnh nhân</h2>
+            <div id="dicomMetadata"></div>
+        </div>
+    </div>
+
+    <script src="info.js" defer></script>
+</body>
+</html>
